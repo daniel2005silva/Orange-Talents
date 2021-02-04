@@ -1,11 +1,16 @@
 package com.daniel.loteria.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(
+        name="PESSOA",
+        uniqueConstraints={@UniqueConstraint(columnNames="email")}
+)
 public class Pessoa {
     @GeneratedValue
     @Id
@@ -20,14 +25,18 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String email) {
-        super();
+    public Pessoa(int id, String nome, String email) {
+        this.id = id;
         this.nome = nome;
         this.email = email;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

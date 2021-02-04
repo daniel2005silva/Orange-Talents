@@ -1,7 +1,6 @@
 package com.daniel.loteria.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 
 @Entity
 public class Aposta {
@@ -9,9 +8,12 @@ public class Aposta {
     @Id
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_pessoa")
-    private Pessoa id_pessoa ;
+    @Column(name = "nome")
+    private String nome;
+
+    @OneToOne
+    @JoinColumn(name = "id_pessoa",nullable=false)
+    private Pessoa id_pessoa;
 
     @Column(name = "aposta")
     private Integer[] aposta;
@@ -19,14 +21,23 @@ public class Aposta {
     public Aposta() {
     }
 
-    public Aposta( Pessoa id_pessoa, Integer[] aposta) {
+    public Aposta( String nome, Pessoa id_pessoa, Integer[] aposta) {
         super();
+        this.nome = nome;
         this.id_pessoa = id_pessoa;
         this.aposta = aposta;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Pessoa getId_pessoa() {
