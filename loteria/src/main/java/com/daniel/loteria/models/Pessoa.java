@@ -16,10 +16,10 @@ public class Pessoa {
     @Id
     private int id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
     public Pessoa() {

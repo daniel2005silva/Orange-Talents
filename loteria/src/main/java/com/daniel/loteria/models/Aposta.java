@@ -3,29 +3,33 @@ package com.daniel.loteria.models;
 import javax.persistence.*;
 
 @Entity
+@Table(
+        name = "APOSTA",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"nome", "id_pessoa", "numeros"})}
+)
 public class Aposta {
     @GeneratedValue
     @Id
     private int id;
 
-    @Column(name = "nome")
+    @Column(name = "nome",nullable = false)
     private String nome;
 
     @OneToOne
     @JoinColumn(name = "id_pessoa",nullable=false)
     private Pessoa id_pessoa;
 
-    @Column(name = "aposta")
-    private Integer[] aposta;
+    @Column(name = "numeros", nullable = false)
+    private Integer[] numeros;
 
     public Aposta() {
     }
 
-    public Aposta( String nome, Pessoa id_pessoa, Integer[] aposta) {
+    public Aposta( String nome, Pessoa id_pessoa, Integer[] numeros) {
         super();
         this.nome = nome;
         this.id_pessoa = id_pessoa;
-        this.aposta = aposta;
+        this.numeros = numeros;
     }
 
     public int getId() {
@@ -48,12 +52,12 @@ public class Aposta {
         this.id_pessoa = id_pessoa;
     }
 
-    public Integer[] getAposta() {
-        return aposta;
+    public Integer[] getNumeros() {
+        return numeros;
     }
 
-    public void setAposta(Integer[] aposta) {
-        this.aposta = aposta;
+    public void setNumeros(Integer[] numeros) {
+        this.numeros = numeros;
     }
 
 
